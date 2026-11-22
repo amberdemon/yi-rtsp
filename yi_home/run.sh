@@ -10,6 +10,7 @@ TOKEN_FILE="/data/backend-api-token"
 ENV_FILE="/data/yi.env"
 BACKEND_PID=""
 UPLOAD_PID=""
+VIEWER_PID=""
 BACKEND_STOP_TIMEOUT_SECONDS=20
 BOOTSTRAP_LOG="/tmp/yi-vendor-bootstrap.log"
 
@@ -60,8 +61,17 @@ terminate_upload_ui() {
 }
 
 terminate_all() {
+  terminate_viewer
   terminate_backend
   terminate_upload_ui
+}
+
+terminate_viewer() {
+  if [[ -n "${VIEWER_PID}" ]] && kill -0 "${VIEWER_PID}" 2>/dev/null; then
+    kill -TERM "${VIEWER_PID}" 2>/dev/null || true
+    wait "${VIEWER_PID}" 2>/dev/null || true
+  fi
+  VIEWER_PID=""
 }
 trap terminate_all TERM INT
 
@@ -184,6 +194,15 @@ if [[ "${ready}" != true ]]; then
   bashio::exit.nok "YI Home backend health API did not become ready."
 fi
 
+python3 "${APP_ROOT}/yi_browser_view.py" \
+  --bind 0.0.0.0 --port 8097 --token-file "${TOKEN_FILE}" &
+VIEWER_PID=$!
+sleep 0.2
+if ! kill -0 "${VIEWER_PID}" 2>/dev/null; then
+  terminate_all
+  bashio::exit.nok "Browser viewer failed to start."
+fi
+
 resolve_app_hostname() {
   local value=""
 
@@ -237,5 +256,6 @@ wait "${BACKEND_PID}"
 rc=$?
 set -e
 BACKEND_PID=""
+terminate_viewer
 terminate_upload_ui
 exit "${rc}"
