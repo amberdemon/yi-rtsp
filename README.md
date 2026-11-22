@@ -1,14 +1,15 @@
 # YI RTSP
 
-## Independent streaming investigation (this fork)
+## Independent streaming fix (this fork)
 
-This fork preserves a verified standalone Driveway capture and the bounded
-reproduction tools. Camera-level authentication and independently decoded
-1080p H.264/AAC were demonstrated on 22 November 2026. The normal managed relay
-has not yet been changed: the proof uses an isolated worker copy to separate
-media output from native-library logging.
+This fork separates binary camera media from native-library stdout in the
+normal managed relay. Docker builds generate a hash-checked media worker;
+normal startup verifies it before the backend starts. YI's proprietary library
+and the packaged original worker remain unchanged. The build uses the verified
+descriptor patch because native worker source is unavailable.
 
 - [Findings and limitations](docs/investigation/2026-11-22-streaming-feasibility.md)
+- [Persistent fix, deployment and rollback](docs/investigation/persistent-media-channel.md)
 - [Reproduce the finite capture](tools/streaming-proof/README.md)
 
 Credentials, proprietary vendor libraries, raw logs and camera recordings are

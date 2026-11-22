@@ -51,9 +51,13 @@ RUN apk add --no-cache \
 COPY rootfs/ /
 COPY run.sh /run.sh
 RUN chmod 0755 /run.sh \
+    && python3 /opt/yi-home/app/yi_native_worker.py \
+      /opt/yi-home/runtime/bionic-root/data/local/tmp/yi-phase3g/android_pppp_av_stream \
+      /opt/yi-home/runtime/bionic-root/data/local/tmp/yi-phase3g/android_pppp_av_stream.fd3 \
     && test -f /opt/yi-home/app/yi_addon_service.py \
     && test -x /opt/yi-home/runtime/bionic-root/system/bin/linker64 \
     && test -x /opt/yi-home/runtime/bionic-root/data/local/tmp/yi-online-status/android_pppp_online_probe \
+    && test -x /opt/yi-home/runtime/bionic-root/data/local/tmp/yi-phase3g/android_pppp_av_stream.fd3 \
     && test -x /usr/local/bin/ffmpeg \
     && test -x /usr/local/bin/ffprobe \
     && python3 -m py_compile /opt/yi-home/app/*.py

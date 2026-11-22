@@ -1,14 +1,15 @@
 # Reproduce the independent streaming proof
 
-This is a bounded diagnostic for the existing `yi-rtsp-poc` Docker bridge,
-not the permanent streaming fix or a viewer. It selects only the powered
+This is a bounded diagnostic for the updated `yi-rtsp-poc` Docker bridge,
+not a viewer. It selects only the powered
 camera named **Driveway** and uses the bridge's authenticated material broker.
 
 ## Prerequisites
 
 - Docker is running on the existing Intel Mac / Linux amd64 setup.
 - The `yi-rtsp-poc` container already exists, with its authenticated persistent
-  configuration and privately supplied ARM64 YI library.
+  configuration and privately supplied ARM64 YI library, and runs an image
+  built from this fork's persistent media-channel fix.
 - Driveway is powered on. Close YI Home and tinyCam for an isolated test.
 - Do not replace, delete or recreate the existing volume for this proof.
 
@@ -29,8 +30,8 @@ The first command tests the descriptor routing and version-locked patch,
 alongside the upstream upload tests; it does not contact cameras or YI cloud.
 It needs permission to bind temporary loopback sockets for the upstream tests.
 The second command starts the existing container if stopped and copies only
-the proof utilities into `/tmp`. It verifies the installed worker's SHA256,
-creates a separate patched copy, runs the existing relay for 15 seconds, and
+the capture driver into `/tmp`. It runs the normal installed stable relay
+with the material broker for 15 seconds, and
 validates the resulting MPEG-TS with FFprobe and strict FFmpeg decoding.
 A 60-second outer deadline (plus 5-second kill grace) bounds the relay run.
 
@@ -44,20 +45,25 @@ This workflow reuses an existing configured runtime. It does not claim that
 a fresh Docker installation can authenticate without initial private setup,
 or that the newly checked-out image has been fully rebuilt and validated.
 
-## How the workaround works
+## How the normal fix works
 
-`patch_worker_fd.py` accepts exactly the verified original worker hash. At
-offset `0x8d4`, it changes the media write descriptor from 1 to 3. The wrapper
-duplicates the media pipe onto fd 3 and redirects ordinary stdout to stderr.
-The proprietary library stays byte-for-byte unchanged. The installed worker
-also stays unchanged. The patcher refuses unknown versions or conflicting
-destination files, and accepts an identical existing patched output.
+The Dockerfile and normal startup run `yi_native_worker.py`, which accepts
+exactly the verified original worker hash. At offset `0x8d4`, it changes the
+media write descriptor from 1 to 3 in a separate `.fd3` executable. The normal
+relay launches this executable through `tools/yi_media_worker.sh`, which
+duplicates the media pipe onto fd 3 and discards vendor stdout. Native worker
+stage diagnostics remain on stderr. The proprietary library and original
+worker stay byte-for-byte unchanged. Preparation refuses unknown versions,
+symlinks or conflicting outputs, and accepts an identical prepared worker.
 
-`run_separated_relay.py` reuses `request_runtime_material` and the existing
-Python relay. Raw diagnostics remain private at
+`run_separated_relay.py` invokes the normal installed stable relay without
+monkeypatching its target resolver, worker or QEMU executable. Diagnostics remain private at
 `/tmp/yi-investigation/separated-relay.stderr` inside the container. Never
-upload that file without reviewing and redacting it. The setup is temporary;
-container recreation removes it, and the script recreates it on its next run.
+upload that file without reviewing and redacting it. No temporary worker or
+wrapper is required. The image contains the fix, including after recreation.
+
+`patch_worker_fd.py` and `qemu-media-fd3.sh` preserve the original isolated
+investigation method for reference. The current run script does not use them.
 
 `direct_probe.py` is the earlier bounded original-worker observation tool.
 It intentionally captures mixed stdout privately for diagnosis; that output
@@ -65,6 +71,6 @@ is not safe to publish and must not be treated as a clean video recording.
 
 ## Next milestone
 
-Integrate media/diagnostic separation into normal startup, preferably by
-obtaining and rebuilding the worker source. Then verify simultaneous Driveway
-and Garden playback through go2rtc. Those changes are outside this proof.
+Verify simultaneous Driveway and Garden playback through go2rtc. The source
+rebuild can replace the version-locked patch if the native source becomes
+available. Multi-camera reliability and the viewer remain separate milestones.

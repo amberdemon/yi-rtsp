@@ -20,9 +20,15 @@
       "path": "opt/yi-home/runtime/bionic-root/data/local/tmp/yi-online-status/android_pppp_online_probe",
       "sha256": "23f908cf6eb14be713a1e1ddbfe66b67cc1b0fa6c9edf897c630ee657826154e",
       "size": 68496
+    },
+    "media_fd_worker": {
+      "path": "opt/yi-home/runtime/bionic-root/data/local/tmp/yi-phase3g/android_pppp_av_stream.fd3",
+      "sha256": "949e4bbee3346a045d5c6371f7dfb780efc86f38616b997bc19ae172f60b6802",
+      "size": 69144,
+      "generated_at_image_build": true
     }
   },
-  "python_source_count": 22,
+  "python_source_count": 25,
   "schema_version": 1,
   "secrets_exposed": false,
   "source_commit": "76596eefe45708c3124de00ceefbd4ffdcb40a22",
