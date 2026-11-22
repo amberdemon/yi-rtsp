@@ -1,0 +1,47 @@
+{
+  "milestone": "Local browser view",
+  "browser": "Codex in-app browser",
+  "playback": {
+    "layout": "2",
+    "videos": [
+      {
+        "currentTime": 99.411114,
+        "error": null,
+        "height": 1080,
+        "muted": true,
+        "name": "Garden",
+        "paused": false,
+        "width": 1920
+      },
+      {
+        "currentTime": 99.029311,
+        "error": null,
+        "height": 1080,
+        "muted": true,
+        "name": "Driveway",
+        "paused": false,
+        "width": 1920
+      }
+    ]
+  },
+  "unit_tests_passed": 11,
+  "docker_image": "yi-rtsp:browser",
+  "simultaneous_live_playback": true,
+  "desktop_layout_checked": true,
+  "mobile_layout_checked": true,
+  "fullscreen_enter_exit_checked": true,
+  "exclusive_audio_selection_checked": true,
+  "layout_persists_after_reload": true,
+  "offline_camera_list_checked": true,
+  "browser_back_navigation_checked": true,
+  "automatic_recovery_after_container_recreation": true,
+  "credentials_token_vendor_preserved": true,
+  "code_review": "No remaining actionable findings",
+  "screenshots_committed": false,
+  "media_uploaded_to_third_party": false,
+  "limits": [
+    "Local Docker Mac only; no LAN/remote access in this milestone",
+    "Actual browser playback verified in the in-app browser; mobile viewport tested, no physical phone tested",
+    "Host-shell HTTP readiness request was denied by execution-sandbox local-network policy (403); real browser and in-container HTTP both verified successfully"
+  ]
+}

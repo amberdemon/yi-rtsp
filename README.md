@@ -1,5 +1,12 @@
 # YI RTSP
 
+## Browser viewer (this fork)
+
+The Docker bridge includes a local multi-camera viewer at
+**http://127.0.0.1:18097/** when container port 8097 is published as
+`127.0.0.1:18097:8097`. It reuses the existing camera sessions and keeps YI
+credentials out of the browser. See [setup and verification](docs/browser-view.md).
+
 ## Independent streaming fix (this fork)
 
 This fork separates binary camera media from native-library stdout in the
