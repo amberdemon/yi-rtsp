@@ -46,9 +46,20 @@ class VendorUploadTest(unittest.TestCase):
         for guest_dir in COMPATIBILITY_GUEST_DIRS:
             (self.runtime_root / guest_dir).mkdir(parents=True, exist_ok=True)
 
+        self.upload_files_at_success: list[int] = []
+        upload_files_at_success = self.upload_files_at_success
+
+        class ObservedHandler(Handler):
+            def _json(self, status, payload):
+                if self.command == "POST" and payload.get("ok") is True:
+                    upload_files_at_success.append(
+                        len(list((self.server.data_dir / "vendor-upload").iterdir()))
+                    )
+                super()._json(status, payload)
+
         self.server = UploadServer(
             ("127.0.0.1", 0),
-            Handler,
+            ObservedHandler,
             data_dir=self.data_dir,
             runtime_root=self.runtime_root,
         )
@@ -68,6 +79,9 @@ class VendorUploadTest(unittest.TestCase):
             return json.loads(response.read().decode("utf-8"))
 
     def assert_runtime_installed(self) -> None:
+        # Completion must mean the temporary APK is already gone, not that
+        # cleanup may race the client's next request after the response.
+        self.assertEqual(self.upload_files_at_success, [0])
         target = self.data_dir / "vendor" / LIBRARY_NAME
         self.assertTrue(target.is_file())
         self.assertEqual(target.stat().st_size, 4096)

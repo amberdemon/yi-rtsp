@@ -10,6 +10,7 @@ descriptor patch because native worker source is unavailable.
 
 - [Findings and limitations](docs/investigation/2026-11-22-streaming-feasibility.md)
 - [Persistent fix, deployment and rollback](docs/investigation/persistent-media-channel.md)
+- [First milestone: verified simultaneous Driveway and Garden streams](docs/investigation/two-camera-milestone.md)
 - [Reproduce the finite capture](tools/streaming-proof/README.md)
 
 Credentials, proprietary vendor libraries, raw logs and camera recordings are
