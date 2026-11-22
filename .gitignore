@@ -9,3 +9,18 @@ __pycache__/
 .env
 .env.local
 dist/
+
+# Private investigation inputs and generated media/logs.
+*.so
+.env.*
+yi.env
+*.bak
+*.log
+*.stdout
+*.stderr
+*.mp4
+*.ts
+*.h264
+*.aac
+proof-*/
+/work/

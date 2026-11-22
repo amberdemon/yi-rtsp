@@ -1,0 +1,101 @@
+{
+  "camera": "Driveway",
+  "media_sha256": "dbd5e4613dc87f7ad5958b0083e98c48e6edf246213c41eccfcbddcab29e488f",
+  "ffprobe_command": [
+    "ffprobe",
+    "-v",
+    "error",
+    "-count_frames",
+    "-show_entries",
+    "stream=index,codec_name,codec_type,width,height,sample_rate,channels,nb_read_frames",
+    "-show_entries",
+    "format=duration,size",
+    "-of",
+    "json",
+    "/tmp/yi-investigation/driveway-separated.ts"
+  ],
+  "ffprobe_exit_code": 0,
+  "ffprobe": {
+    "programs": [
+      {
+        "streams": [
+          {
+            "index": 0,
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "nb_read_frames": "183"
+          },
+          {
+            "index": 1,
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "16000",
+            "channels": 1,
+            "nb_read_frames": "144"
+          }
+        ]
+      }
+    ],
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "nb_read_frames": "183"
+      },
+      {
+        "index": 1,
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "sample_rate": "16000",
+        "channels": 1,
+        "nb_read_frames": "144"
+      }
+    ],
+    "format": {
+      "duration": "9.216000",
+      "size": "681124"
+    }
+  },
+  "strict_av_decode_command": [
+    "ffmpeg",
+    "-hide_banner",
+    "-v",
+    "error",
+    "-xerror",
+    "-i",
+    "/tmp/yi-investigation/driveway-separated.ts",
+    "-map",
+    "0",
+    "-f",
+    "null",
+    "-"
+  ],
+  "strict_av_decode_exit_code": 0,
+  "strict_av_decode_error_bytes": 0,
+  "safe_events": [
+    "PPPP_Initialize_rc_hex=0x00000000",
+    "PPPP_Connect_rc_hex=0x00000001",
+    "PPPP_Write_4881_rc_hex=0x00000038",
+    "PPPP_Write_9029_rc_hex=0x00000034",
+    "PPPP_Write_768_rc_hex=0x00000038",
+    "tnp_response_version=2",
+    "tnp_response_command=4882",
+    "tnp_response_command_number=1",
+    "tnp_auth_result=0",
+    "phase3g_tnp_auth=PASS",
+    "PPPP_Write_767_rc_hex=0x00000038",
+    "PPPP_Connect_Break_rc_hex=0x00000000",
+    "PPPP_ForceClose_rc_hex=0x00000000",
+    "channel1_records=144",
+    "channel2_records=5",
+    "channel3_records=178",
+    "PPPP_DeInitialize_rc_hex=0x00000000",
+    "native_worker_exit=0; mpegts_mux_exit=0; video_frames=183; audio_frames=144",
+    "PHASE3G_NATIVE_AV=PASS"
+  ]
+}

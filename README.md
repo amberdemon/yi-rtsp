@@ -1,5 +1,21 @@
 # YI RTSP
 
+## Independent streaming investigation (this fork)
+
+This fork preserves a verified standalone Driveway capture and the bounded
+reproduction tools. Camera-level authentication and independently decoded
+1080p H.264/AAC were demonstrated on 22 November 2026. The normal managed relay
+has not yet been changed: the proof uses an isolated worker copy to separate
+media output from native-library logging.
+
+- [Findings and limitations](docs/investigation/2026-11-22-streaming-feasibility.md)
+- [Reproduce the finite capture](tools/streaming-proof/README.md)
+
+Credentials, proprietary vendor libraries, raw logs and camera recordings are
+kept outside Git. The original upstream documentation follows.
+
+---
+
 YI RTSP is a Home Assistant App that provides RTSP access to supported YI Home cameras without requiring an SD-card hack such as `yi-hack`.
 
 The project is split into two repositories:
