@@ -1,0 +1,127 @@
+{
+  "date": "2026-11-22",
+  "milestone": "Driveway and Garden simultaneously through the normal independent bridge",
+  "long_run": [
+    {
+      "camera": "Garden",
+      "decode_exit_code": 0,
+      "duration_requested_seconds": 1800,
+      "elapsed_seconds": 1800.95,
+      "frames_decoded": 35981,
+      "out_time_us": 1799950000,
+      "completed": true,
+      "error_bytes": 0
+    },
+    {
+      "camera": "Driveway",
+      "decode_exit_code": 0,
+      "duration_requested_seconds": 1800,
+      "elapsed_seconds": 1801.2,
+      "frames_decoded": 36000,
+      "out_time_us": 1799950000,
+      "completed": true,
+      "error_bytes": 0
+    }
+  ],
+  "codec_verification": {
+    "Garden": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "sample_rate": "16000",
+        "channels": 1
+      }
+    ],
+    "Driveway": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "sample_rate": "16000",
+        "channels": 1
+      }
+    ]
+  },
+  "continuity": {
+    "samples": 57,
+    "first_sample_utc": "2026-11-22T21:57:16+00:00",
+    "last_sample_utc": "2026-11-22T22:25:18+00:00",
+    "all_runtime_restart_counts_zero": true,
+    "all_sampled_publishers_attached": true
+  },
+  "additional_viewer": {
+    "additional_viewer_decode_exit_code": 0,
+    "error_bytes": 0
+  },
+  "garden_session_reconnect": {
+    "garden_bridge_stop_start": true,
+    "driveway_decode_exit_code": 0,
+    "garden_decode_exit_code": 0,
+    "driveway_error_bytes": 0,
+    "garden_error_bytes": 0,
+    "driveway_runtime_restart_count_unchanged": true,
+    "driveway_publishing_continued_during_garden_stop": true
+  },
+  "automatic_restore_after_restart": [
+    {
+      "camera": "Garden",
+      "decode_exit_code": 0,
+      "duration_requested_seconds": 20,
+      "elapsed_seconds": 21.46,
+      "frames_decoded": 395,
+      "out_time_us": 19968000,
+      "completed": true,
+      "error_bytes": 0
+    },
+    {
+      "camera": "Driveway",
+      "decode_exit_code": 0,
+      "duration_requested_seconds": 20,
+      "elapsed_seconds": 21.5,
+      "frames_decoded": 400,
+      "out_time_us": 19968000,
+      "completed": true,
+      "error_bytes": 0
+    }
+  ],
+  "automatic_restore_after_final_image_recreation": [
+    {
+      "camera": "Garden",
+      "decode_exit_code": 0,
+      "duration_requested_seconds": 20,
+      "elapsed_seconds": 20.44,
+      "frames_decoded": 400,
+      "out_time_us": 19968000,
+      "completed": true,
+      "error_bytes": 0
+    },
+    {
+      "camera": "Driveway",
+      "decode_exit_code": 0,
+      "duration_requested_seconds": 20,
+      "elapsed_seconds": 20.64,
+      "frames_decoded": 390,
+      "out_time_us": 19968000,
+      "completed": true,
+      "error_bytes": 0
+    }
+  ],
+  "final_image": "yi-rtsp:milestone1",
+  "final_media_core_matches_long_run_image": true,
+  "credentials_api_token_vendor_unchanged": true,
+  "no_temporary_worker_required": true,
+  "unit_tests_passed": 8,
+  "code_review": "no remaining actionable findings",
+  "media_uploaded": false
+}

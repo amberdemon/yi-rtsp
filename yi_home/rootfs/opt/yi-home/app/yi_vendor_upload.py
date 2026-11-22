@@ -225,6 +225,9 @@ class Handler(BaseHTTPRequestHandler):
 
             installed = import_vendor_apk(temporary, self.server.data_dir)
             install_compatibility_links(installed.path, self.server.runtime_root)
+            # A successful response must imply that private upload cleanup has
+            # completed, rather than racing the client's next status request.
+            temporary.unlink()
             self._json(
                 HTTPStatus.OK,
                 {"ok": True, "installed": True, "size": installed.size, "sha256": installed.sha256},
