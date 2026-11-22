@@ -16,6 +16,13 @@ BOOTSTRAP_LOG="/tmp/yi-vendor-bootstrap.log"
 mkdir -p /data
 chmod 0700 /data 2>/dev/null || true
 
+# Validate the packaged, version-locked media worker on every normal startup.
+# No credentials or vendor library are involved in this preparation.
+python3 "${APP_ROOT}/yi_native_worker.py" \
+  "${RUNTIME_ROOT}/data/local/tmp/yi-phase3g/android_pppp_av_stream" \
+  "${RUNTIME_ROOT}/data/local/tmp/yi-phase3g/android_pppp_av_stream.fd3"
+bashio::log.info "Media worker verified; media_fd=3; vendor_stdout=discarded."
+
 terminate_backend() {
   local pid="${BACKEND_PID}"
   if [[ -z "${pid}" ]] || ! kill -0 "${pid}" 2>/dev/null; then

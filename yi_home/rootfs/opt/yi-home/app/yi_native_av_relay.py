@@ -427,10 +427,10 @@ def main() -> int:
         raise SystemExit("choose exactly one of --stdout or --output")
     if not args.skip_env_load and not args.env_file.is_file():
         raise SystemExit(".env.local is missing")
-    worker = args.worker_dir / "android_pppp_av_stream"
+    worker = args.worker_dir / "android_pppp_av_stream.fd3"
     library = args.worker_dir / "libPPPP_API.so"
     if not worker.is_file() or not library.is_file():
-        raise SystemExit("Phase 3G worker is not built")
+        raise SystemExit("Prepared media worker or vendor runtime is missing; rebuild the image")
 
     if not args.skip_env_load:
         oracle.load_env_file(args.env_file)
@@ -455,6 +455,7 @@ def main() -> int:
         log("phone_required=false")
 
         command = [
+            "sh", str(ROOT / "tools" / "yi_media_worker.sh"),
             args.qemu, "-L", str(args.runtime),
             "-E", "LD_LIBRARY_PATH=/data/local/tmp/yi-phase3g:/system/lib64",
             str(worker), "/data/local/tmp/yi-phase3g/libPPPP_API.so",
