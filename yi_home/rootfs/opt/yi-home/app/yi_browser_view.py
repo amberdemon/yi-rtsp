@@ -62,7 +62,11 @@ class ViewerHandler(BaseHTTPRequestHandler):
         try: hostname=urlsplit('//'+host).hostname
         except ValueError:return False
         if hostname not in self.server.allowed_hosts:return False
-        if self.headers.get('Sec-Fetch-Site')=='cross-site':return False
+        # External links may open the public entry page, never data or actions.
+        entry_navigation=(self.command=='GET' and self.path=='/'
+                          and self.headers.get('Sec-Fetch-Mode')=='navigate'
+                          and self.headers.get('Sec-Fetch-Dest')=='document')
+        if self.headers.get('Sec-Fetch-Site')=='cross-site' and not entry_navigation:return False
         origin=self.headers.get('Origin')
         return not origin or origin==self.server.scheme+'://'+host
     def _cookie(self):

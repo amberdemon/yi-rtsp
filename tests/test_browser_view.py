@@ -68,6 +68,20 @@ class BrowserViewTest(unittest.TestCase):
         for headers in [{'Host':'evil.example'},{'Origin':'https://evil.example'},{'Sec-Fetch-Site':'cross-site'}]:
             with self.assertRaises(urllib.error.HTTPError) as e:self.get('/api/cameras',headers)
             self.assertEqual(e.exception.code,403)
+    def test_external_link_can_open_the_sign_in_page(self):
+        headers={'Sec-Fetch-Site':'cross-site','Sec-Fetch-Mode':'navigate','Sec-Fetch-Dest':'document','Sec-Fetch-User':'?1'}
+        with self.get('/',headers,authenticated=False) as r:
+            self.assertEqual(r.status,200);self.assertIn(b'Sign in',r.read())
+    def test_external_navigation_exception_does_not_allow_protected_routes_or_frames(self):
+        navigation={'Sec-Fetch-Site':'cross-site','Sec-Fetch-Mode':'navigate','Sec-Fetch-Dest':'document'}
+        cases=[('/api/cameras',navigation),('/media/'+'a'*20,navigation),('/',dict(navigation,**{'Sec-Fetch-Dest':'iframe'})),('/',{'Sec-Fetch-Site':'cross-site'})]
+        for path,headers in cases:
+            with self.subTest(path=path,headers=headers):
+                with self.assertRaises(urllib.error.HTTPError) as e:self.get(path,headers)
+                self.assertEqual(e.exception.code,403)
+        with self.assertRaises(urllib.error.HTTPError) as e:
+            self.post('/auth/login',{'password':'synthetic-viewer-password'},navigation)
+        self.assertEqual(e.exception.code,403)
     def test_unauthenticated_requests_cannot_read_cameras_or_media(self):
         with self.get('/',authenticated=False) as r:self.assertIn(b'Sign in',r.read())
         for path in ['/api/cameras','/media/'+'a'*20]:

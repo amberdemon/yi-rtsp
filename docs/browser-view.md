@@ -23,7 +23,9 @@ continue to provide account/session connectivity.
 Only camera display names, opaque stable IDs and availability reach the camera
 list. YI credentials and the backend bearer token stay inside the container.
 Media paths accept known active camera IDs only. Explicit Host checks, exact
-HTTPS Origin checks, cross-site request rejection and CSP constrain access.
+HTTPS Origin checks, cross-site data/action rejection and CSP constrain access. Top-level links from
+other apps can open the public entry page; frames and cross-site API/media
+requests remain rejected.
 
 The separate viewer password uses salted scrypt. Secure, HttpOnly, SameSite
 cookies contain opaque sessions; only session hashes are stored. Sessions expire
@@ -115,3 +117,12 @@ both moving pictures, one-camera audio, fullscreen enter/exit, screen lock for
 10 seconds then automatic muted recovery, and logout returning to sign-in.
 Keep screenshots/recordings private. A mobile viewport or decoded MP4 alone
 does not establish this physical-device acceptance.
+
+## Android connection troubleshooting
+
+For `ERR_TOO_MANY_RETRIES` before any page loads, check Android Settings → Apps
+→ Chrome → Permissions → Nearby devices. If already enabled, toggle it off and
+on, then reopen Chrome. A documented Android/Chrome permission bug can leave
+local-network access blocked despite the displayed permission state:
+[Chromium issue](https://issues.chromium.org/issues/579403238).
+Keep using the explicit HTTPS URL and the installed private CA.

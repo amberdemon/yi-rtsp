@@ -24,12 +24,15 @@
   "same_browser_session_survived_restart": true,
   "two_streams_restored_automatically": true,
   "tls_still_verified_after_restart": true,
-  "unit_tests_passed": 21,
-  "image": "yi-rtsp:secure-lan",
+  "unit_tests_passed": 23,
+  "image": "yi-rtsp:secure-lan-nav",
   "review": "No remaining actionable findings",
   "private_values_committed": false,
   "credentials_token_vendor_preserved": true,
   "private_value_source_scan_passed": true,
   "only_viewer_published_on_private_lan": true,
-  "container_running": true
+  "container_running": true,
+  "external_link_entry_regression_test_passed": true,
+  "android_ca_installation_user_confirmed": true,
+  "android_reached_viewer_after_nearby_permission_toggle": true
 }
