@@ -126,3 +126,13 @@ on, then reopen Chrome. A documented Android/Chrome permission bug can leave
 local-network access blocked despite the displayed permission state:
 [Chromium issue](https://issues.chromium.org/issues/579403238).
 Keep using the explicit HTTPS URL and the installed private CA.
+
+## Camera reconnect credentials
+
+Each new supervised relay launch refreshes the device list and per-camera TNP
+connection details through the existing authenticated YI cloud session. Active
+relays continue without that refresh. This prevents a disconnected camera from
+retrying indefinitely with an older cached password after YI rotates its camera
+credentials. The regression test rotates synthetic encrypted passwords and TNP
+details between two launches and verifies the new values are used without an
+additional account login.

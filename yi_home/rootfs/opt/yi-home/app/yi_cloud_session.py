@@ -144,8 +144,9 @@ class YiCloudSession:
 
     def runtime_material(self, stable_id: str) -> tuple[CameraMaterial, RuntimeDescriptor]:
         def resolve(manager: YiCameraManager) -> tuple[CameraMaterial, RuntimeDescriptor]:
-            if manager.camera_count == 0:
-                manager.refresh_devices()
+            # Reconnects need current per-camera passwords and TNP details, not
+            # the inventory cached when this long-lived account session began.
+            manager.refresh_devices()
             return runtime_material_from_manager(manager, stable_id)
 
         return self._run("runtime_material", resolve)
