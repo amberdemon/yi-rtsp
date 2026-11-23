@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>YI View</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
 <body><main>
-<header><div><p class="eyebrow">YOUR CAMERAS, TOGETHER</p><h1>YI View</h1><p class="sub">A clear view of home.</p></div><span class="private">Local viewing</span></header>
+<header><div><p class="eyebrow">YOUR CAMERAS, TOGETHER</p><h1>YI View</h1><p class="sub">A clear view of home.</p></div><div class="header-actions"><span class="private">Private home viewing</span><button id="logout" type="button">Sign out</button></div></header>
 <section class="toolbar" aria-label="View options"><div><h2>Live cameras</h2><p id="summary" role="status">Connecting to your cameras…</p></div><div class="options"><label for="layout">Layout</label><select id="layout"><option value="2">Two columns</option><option value="1">One column</option></select><button id="offline-toggle" type="button" aria-expanded="false">Show offline</button></div></section>
 <p id="service-message" class="service" role="status" hidden></p>
 <section id="grid" class="grid" aria-label="Camera feeds"></section>

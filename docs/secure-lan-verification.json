@@ -1,0 +1,35 @@
+{
+  "lan_https_verified": true,
+  "anonymous_access_denied": true,
+  "logout_revokes_access": true,
+  "videos": [
+    {
+      "camera": "Garden",
+      "decode_exit_code": 0,
+      "frames": 175,
+      "error_bytes": 0,
+      "https_media_bytes": 871470,
+      "tls_certificate_verified": true
+    },
+    {
+      "camera": "Driveway",
+      "decode_exit_code": 0,
+      "frames": 176,
+      "error_bytes": 0,
+      "https_media_bytes": 628928,
+      "tls_certificate_verified": true
+    }
+  ],
+  "physical_android_test": "pending",
+  "same_browser_session_survived_restart": true,
+  "two_streams_restored_automatically": true,
+  "tls_still_verified_after_restart": true,
+  "unit_tests_passed": 21,
+  "image": "yi-rtsp:secure-lan",
+  "review": "No remaining actionable findings",
+  "private_values_committed": false,
+  "credentials_token_vendor_preserved": true,
+  "private_value_source_scan_passed": true,
+  "only_viewer_published_on_private_lan": true,
+  "container_running": true
+}

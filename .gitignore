@@ -24,3 +24,7 @@ yi.env
 *.aac
 proof-*/
 /work/
+*.key
+*.pem
+*.crt
+*.cer
