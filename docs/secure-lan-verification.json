@@ -38,5 +38,6 @@
   "runtime_credentials_refreshed_on_reconnect": true,
   "rotating_camera_credentials_regression_test_passed": true,
   "both_cameras_started_without_retry_after_deployment": true,
-  "android_external_link_https_check_passed": true
+  "android_external_link_https_check_passed": true,
+  "restart_recovery_verified_image": "yi-rtsp:secure-lan-refresh"
 }
