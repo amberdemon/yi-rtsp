@@ -194,6 +194,7 @@ if [[ "${ready}" != true ]]; then
   bashio::exit.nok "YI Home backend health API did not become ready."
 fi
 
+python3 "${APP_ROOT}/yi_viewer_tls.py"
 python3 "${APP_ROOT}/yi_browser_view.py" \
   --bind 0.0.0.0 --port 8097 --token-file "${TOKEN_FILE}" &
 VIEWER_PID=$!

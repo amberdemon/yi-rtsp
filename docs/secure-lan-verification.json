@@ -1,0 +1,51 @@
+{
+  "lan_https_verified": true,
+  "anonymous_access_denied": true,
+  "logout_revokes_access": true,
+  "videos": [
+    {
+      "camera": "Garden",
+      "decode_exit_code": 0,
+      "frames": 182,
+      "error_bytes": 0,
+      "https_media_bytes": 962754,
+      "tls_certificate_verified": true
+    },
+    {
+      "camera": "Driveway",
+      "decode_exit_code": 0,
+      "frames": 182,
+      "error_bytes": 0,
+      "https_media_bytes": 642448,
+      "tls_certificate_verified": true
+    }
+  ],
+  "physical_android_test": "all_acceptance_checks_user_confirmed",
+  "same_browser_session_survived_restart": true,
+  "two_streams_restored_automatically": true,
+  "tls_still_verified_after_restart": true,
+  "unit_tests_passed": 24,
+  "image": "yi-rtsp:secure-lan-refresh",
+  "review": "No remaining actionable findings",
+  "private_values_committed": false,
+  "credentials_token_vendor_preserved": true,
+  "private_value_source_scan_passed": true,
+  "only_viewer_published_on_private_lan": true,
+  "container_running": true,
+  "external_link_entry_regression_test_passed": true,
+  "android_ca_installation_user_confirmed": true,
+  "android_reached_viewer_after_nearby_permission_toggle": true,
+  "runtime_credentials_refreshed_on_reconnect": true,
+  "rotating_camera_credentials_regression_test_passed": true,
+  "both_cameras_started_without_retry_after_deployment": true,
+  "android_external_link_https_check_passed": true,
+  "restart_recovery_verified_image": "yi-rtsp:secure-lan-refresh",
+  "android_sign_in_user_confirmed": true,
+  "android_both_camera_feeds_user_confirmed": true,
+  "android_confirmation_date": "2026-11-24",
+  "android_fullscreen_user_confirmed": true,
+  "android_exclusive_audio_user_confirmed": true,
+  "android_screen_lock_recovery_user_confirmed": true,
+  "android_resumes_muted_user_confirmed": true,
+  "android_sign_out_user_confirmed": true
+}

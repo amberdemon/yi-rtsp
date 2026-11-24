@@ -2,10 +2,11 @@
 
 ## Browser viewer (this fork)
 
-The Docker bridge includes a local multi-camera viewer at
-**http://127.0.0.1:18097/** when container port 8097 is published as
-`127.0.0.1:18097:8097`. It reuses the existing camera sessions and keeps YI
-credentials out of the browser. See [setup and verification](docs/browser-view.md).
+The Docker bridge includes a password-protected multi-camera viewer over HTTPS
+for your home Wi-Fi. It reuses the existing camera sessions and keeps YI
+credentials on the bridge. Android Chrome is the current physical-device test
+target. A separate viewer password and one-time private certificate trust step
+are required. See [setup and verification](docs/browser-view.md).
 
 ## Independent streaming fix (this fork)
 
