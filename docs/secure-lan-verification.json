@@ -20,7 +20,7 @@
       "tls_certificate_verified": true
     }
   ],
-  "physical_android_test": "pending",
+  "physical_android_test": "sign_in_and_both_cameras_confirmed; remaining_device_checks_pending",
   "same_browser_session_survived_restart": true,
   "two_streams_restored_automatically": true,
   "tls_still_verified_after_restart": true,
@@ -39,5 +39,8 @@
   "rotating_camera_credentials_regression_test_passed": true,
   "both_cameras_started_without_retry_after_deployment": true,
   "android_external_link_https_check_passed": true,
-  "restart_recovery_verified_image": "yi-rtsp:secure-lan-refresh"
+  "restart_recovery_verified_image": "yi-rtsp:secure-lan-refresh",
+  "android_sign_in_user_confirmed": true,
+  "android_both_camera_feeds_user_confirmed": true,
+  "android_confirmation_date": "2026-11-24"
 }
