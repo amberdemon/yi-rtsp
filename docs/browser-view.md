@@ -4,8 +4,9 @@ The viewer shows active camera streams together over HTTPS with a separate
 viewer password. It provides a responsive grid, fullscreen, audio from one
 camera at a time and an optional list of offline cameras. Both videos start
 muted. Layout persists in the browser. Returning after screen lock reconnects
-muted; tap Listen to enable audio again. Android Chrome is the current physical
-device acceptance target; that test remains pending.
+muted; tap Listen to enable audio again. Physical Android Chrome acceptance passed on 24 November 2026: the user
+confirmed sign-in, both camera feeds, fullscreen, exclusive audio, muted recovery
+after screen lock and sign-out.
 
 ## Access and privacy
 
